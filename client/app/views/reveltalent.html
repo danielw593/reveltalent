@@ -1,0 +1,38 @@
+<div class="page page-dashboard" data-ng-controller="RevelTalentCtrl">
+
+  <section class="panel panel-default">
+      <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Companies</strong></div>
+      <div class="panel-body">
+
+          <div class="table-responsive">
+              <table class="table table-striped table-bordered">
+                  <thead>
+                      <tr>
+                        <td></td>
+                        <th>name</th>
+                        <th>business_area</th>
+                        <th>description</th>
+                        <th>employees</th>
+                        <th>open_jobs</th>
+                        <th>employees/open_jobs</td>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <!-- name	business_area	description	website	customer_type	city	state	founded	founders	linkedin_followers	recent_press	employees	open_jobs	open_jobs/employees	former_employees	glassdoor_rating	#_of_glassdoor_reviews	good_interview_experience_(positive_+_neutral)	total_raised	investors	revel_profile	logo	traffic_graph -->
+                      <tr ng-repeat="company in companies">
+                          <td>{{company.revel_profile}}</td>
+                          <td>{{company.name}}</td>
+                          <td>{{company.business_area}}</td>
+                          <td>{{company.description}}</td>
+                          <td>{{company.employees}}</td>
+                          <td>{{company.open_jobs}}</td>
+                          <td>{{company.open_jobs_employees_ratio}}</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+
+      </div>
+  </section>
+
+</div>

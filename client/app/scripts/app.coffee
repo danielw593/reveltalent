@@ -29,13 +29,17 @@ angular.module('app', [
     'app.chart.ctrls'
     'app.chart.directives'
     'app.page.ctrls'
+
+    # RevelTalent
+    'app.data'
 ])
-    
+
 .config([
     '$routeProvider'
     ($routeProvider) ->
 
         routes = [
+            'reveltalent'
             'dashboard'
             'ui/typography', 'ui/buttons', 'ui/icons', 'ui/grids', 'ui/widgets', 'ui/components', 'ui/boxes', 'ui/timeline', 'ui/nested-lists', 'ui/pricing-tables', 'ui/maps'
             'tables/static', 'tables/dynamic', 'tables/responsive'

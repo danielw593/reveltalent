@@ -41,9 +41,9 @@ gulp.task "compile", [
   ]
 
 gulp.task "clean", ->
-  gulp.src(["./dist/**/*.*"],
-    read: false
-  ).pipe rimraf()
+  # gulp.src(["./dist/**/*.*"],
+  #   read: false
+  # ).pipe rimraf()
 
 gulp.task "compile-images", ->
   gulp.src("./app/images/**/*.*")
@@ -185,7 +185,6 @@ deploy = (bucketName) ->
   aws.bucket = bucketName
   headers =
     "Cache-Control": "max-age=315360000, no-transform, public"
-    "Content-Type": "application/javascript"
 
   console.log("[Copying to #{aws.bucket} ]")
   publisher = awspublish.create(aws);
@@ -199,33 +198,23 @@ gulp.task "prepare_bower_dist", ->
     .pipe(gulp.dest("./dist/s3"))
 
 gulp.task "prepare_appfiles_dist", ->
-  gulp.src(["./dist/**/*.*", "!./dist/s3/**/*."])
+  gulp.src(["!./dist/s3", "!./dist/s3/**/*.*", "./dist/**/*.*"])
     .pipe(gulp.dest("./dist/s3"))
 
-gulp.task "baseurl:development", ->
-  setupBaseUrl "https://development.reveltalent.com"
+gulp.task "baseurl", ->
+  setupBaseUrl "https://api.reveltalent.com"
 
-gulp.task "baseurl:production", ->
-  setupBaseUrl "https://reveltalent.com"
-
-gulp.task "copys3:development", ->
-  deploy "development-admin.reveltalent.com"
+gulp.task "copys3", ->
+  deploy "reveltalent"
 
 gulp.task "copys3:production", ->
-  deploy "admin.reveltalent.com"
+  deploy "reveltalent.com"
 
 
 
-gulp.task "deploy:development", ->
+gulp.task "deploy", ->
   runSequence("index.html",
               "prepare_bower_dist",
               "prepare_appfiles_dist",
-              "baseurl:development",
-              "copys3:development")
-
-gulp.task "deploy:production", ->
-  runSequence("index.html",
-              "prepare_bower_dist",
-              "prepare_appfiles_dist",
-              "baseurl:production",
-              "copys3:production")
+              "baseurl",
+              "copys3")

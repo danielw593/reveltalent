@@ -7,16 +7,16 @@ angular.module('app', [
 
     # 3rd Party Modules
     'ui.bootstrap'
-    'easypiechart'
-    'ui.tree'
-    'ngMap'
-    'ngTagsInput'
+    # 'easypiechart'
+    # 'ui.tree'
+    # 'ngMap'
+    # 'ngTagsInput'
     'angular-loading-bar'
 
     # Custom modules
     'app.controllers'
     'app.directives'
-    'app.localization'
+    # 'app.localization'
     'app.nav'
     'app.ui.ctrls'
     'app.ui.directives'
@@ -24,11 +24,11 @@ angular.module('app', [
     'app.form.validation'
     'app.ui.form.ctrls'
     'app.ui.form.directives'
-    'app.tables'
-    'app.task'
-    'app.chart.ctrls'
-    'app.chart.directives'
-    'app.page.ctrls'
+    # 'app.tables'
+    # 'app.task'
+    # 'app.chart.ctrls'
+    # 'app.chart.directives'
+    # 'app.page.ctrls'
 
     # RevelTalent
     'app.data'
@@ -40,6 +40,7 @@ angular.module('app', [
 
         routes = [
             'reveltalent'
+            'company'
             'dashboard'
             'ui/typography', 'ui/buttons', 'ui/icons', 'ui/grids', 'ui/widgets', 'ui/components', 'ui/boxes', 'ui/timeline', 'ui/nested-lists', 'ui/pricing-tables', 'ui/maps'
             'tables/static', 'tables/dynamic', 'tables/responsive'
@@ -62,7 +63,8 @@ angular.module('app', [
             setRoutes(route)
         )
         $routeProvider
-            .when('/', { redirectTo: '/dashboard'} )
+            .when('/', { redirectTo: '/reveltalent'} )
+            .when('/company/:name', { templateUrl: 'views/company.html', controller: 'CompanyCtrl'} )
             .when('/404', { templateUrl: 'views/pages/404.html'} )
             .otherwise( redirectTo: '/404' )
 ])

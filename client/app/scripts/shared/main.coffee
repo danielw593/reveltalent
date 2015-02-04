@@ -9,8 +9,8 @@ angular.module('app.controllers', [])
         $window = $(window)
 
         $scope.main =
-            brand: 'Simplify'
-            name: 'Lisa Doe' # those which uses i18n directive can not be replaced for now.
+            brand: 'Revel Talent'
+            name: 'Dan Weiner' # those which uses i18n directive can not be replaced for now.
 
 
         $scope.pageTransitionOpts = [
@@ -29,7 +29,7 @@ angular.module('app.controllers', [])
 
         $scope.admin =
             layout: 'wide'                                  # 'boxed', 'wide'
-            menu: 'vertical'                                # 'horizontal', 'vertical'
+            menu: 'horizontal'                                # 'horizontal', 'vertical'
             fixedHeader: true                               # true, false
             fixedSidebar: true                              # true, false
             pageTransition: $scope.pageTransitionOpts[0]    # unlimited, check out "_animation.scss"
@@ -78,15 +78,9 @@ angular.module('app.controllers', [])
     ($scope) ->
 ])
 .controller('NavCtrl', [
-    '$scope', 'taskStorage', 'filterFilter'
-    ($scope, taskStorage, filterFilter) ->
+    '$scope',
+    ($scope) ->
         # init
-        tasks = $scope.tasks = taskStorage.get()
-        $scope.taskRemainingCount = filterFilter(tasks, {completed: false}).length
-
-        $scope.$on('taskRemaining:changed', (event, count) ->
-            $scope.taskRemainingCount = count
-        )
 ])
 
 .controller('DashboardCtrl', [

@@ -21,7 +21,7 @@
                       <!-- name	business_area	description	website	customer_type	city	state	founded	founders	linkedin_followers	recent_press	employees	open_jobs	open_jobs/employees	former_employees	glassdoor_rating	#_of_glassdoor_reviews	good_interview_experience_(positive_+_neutral)	total_raised	investors	revel_profile	logo	traffic_graph -->
                       <tr ng-repeat="company in companies">
                           <td>{{company.revel_profile}}</td>
-                          <td>{{company.name}}</td>
+                          <td><a ng-href="#/company/{{company.name}}">{{company.name}}</a></td>
                           <td>{{company.business_area}}</td>
                           <td>{{company.description}}</td>
                           <td>{{company.employees}}</td>

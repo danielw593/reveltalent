@@ -9,12 +9,11 @@ angular.module('app.controllers').controller('CompanyCtrl', [
       $scope.findCompany = (name)->
         for company in $scope.companies
           return company if company.name == name
-        return null 
+        return null
 
       # Initialization
-      info = dataStorage.getCompanies() # FIXME: that can be optimized
-      $scope.names = info.names
-      $scope.companies = info.companies
-      $scope.name = $routeParams.name  
-      $scope.company = $scope.findCompany($scope.name)  
+      $scope.names = dataStorage.names
+      $scope.companies = dataStorage.companies
+      $scope.name = $routeParams.name
+      $scope.company = $scope.findCompany($scope.name)
 ])

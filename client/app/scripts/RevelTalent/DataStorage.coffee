@@ -3,22 +3,28 @@
 angular.module('app.data', [])
 
 .factory('dataStorage', ->
-
-    return {
-        getCompanies: ->
-            names = window.data.csv.shift().split("\t")
-            data = []
-            for  line in window.data.csv
-              values = line.split("\t")
-              record = {}
-              position = 0
-              for name in names
-                record[name] = values[position++]
-              data.push record
-            {names:names, companies:data}
-    }
+    getCompaniesInfo = ->
+        names = window.data.csv.shift().split("\t")
+        data = []
+        for  line in window.data.csv
+          values = line.split("\t")
+          record = {}
+          position = 0
+          for name in names
+            record[name] = values[position++]
+          data.push record
+        {names:names, companies:data}
+    companiesInfo = getCompaniesInfo()
+    return companiesInfo
 )
 
+"use strict"
+
+# Services
+
+# Demonstrate how to register services
+# In this case it is a simple value service.
+angular.module("myApp.services", []).value "version", "0.1"
 
 window.data = {}
 window.data.csv = [

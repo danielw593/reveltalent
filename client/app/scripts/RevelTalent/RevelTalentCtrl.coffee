@@ -4,8 +4,6 @@ angular.module('app.controllers').controller('RevelTalentCtrl', [
     '$scope'
     'dataStorage'
     ($scope, dataStorage) ->
-      info = dataStorage.getCompanies()
-      $scope.names = info.names
-      $scope.companies = info.companies
-
+      $scope.names = dataStorage.names
+      $scope.companies = dataStorage.companies
 ])

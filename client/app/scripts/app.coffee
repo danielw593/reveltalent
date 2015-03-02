@@ -81,6 +81,7 @@ app.run(["$rootScope", "$http", '$routeParams', ($rootScope, $http, $routeParams
       )
 
     $rootScope.findCompany = (name)->
+      return null unless $rootScope.companies
       for company in $rootScope.companies
         return company if company.name == name
       return null

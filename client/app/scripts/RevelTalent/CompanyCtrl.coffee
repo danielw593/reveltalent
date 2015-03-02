@@ -2,18 +2,12 @@
 
 angular.module('app.controllers').controller('CompanyCtrl', [
     '$scope'
-    'dataStorage'
     '$routeParams'
-    ($scope, dataStorage, $routeParams) ->
+    ($scope, $routeParams) ->
 
-      $scope.findCompany = (name)->
-        for company in $scope.companies
-          return company if company.name == name
-        return null
+      $scope.$on 'companiesLoadedEvent', (event, companies, selectedCompany)->
+          $scope.company = selectedCompany
 
       # Initialization
-      $scope.names = dataStorage.names
-      $scope.companies = dataStorage.companies
-      $scope.name = $routeParams.name
-      $scope.company = $scope.findCompany($scope.name)
+      $scope.company = $scope.findCompany($routeParams.name)
 ])

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app', [
+app = angular.module('app', [
     # Angular modules
     'ngRoute'
     'ngAnimate'
@@ -31,10 +31,9 @@ angular.module('app', [
     # 'app.page.ctrls'
 
     # RevelTalent
-    'app.data'
 ])
 
-.config([
+app.config([
     '$routeProvider'
     ($routeProvider) ->
 
@@ -67,4 +66,26 @@ angular.module('app', [
             .when('/company/:name', { templateUrl: 'views/company.html', controller: 'CompanyCtrl'} )
             .when('/404', { templateUrl: 'views/pages/404.html'} )
             .otherwise( redirectTo: '/404' )
+])
+
+app.run(["$rootScope", "$http", '$routeParams', ($rootScope, $http, $routeParams) ->
+    # TODO: move loadCompanies/findCompany to service
+    $rootScope.loadCompanies = ->
+      $http.get('http://reveltalent-server.herokuapp.com/companies/index').success((data, status, headers, config) ->
+        $rootScope.companies = data.companies
+        $rootScope.selectedCompany = $rootScope.findCompany($routeParams.name) if $routeParams.name
+        $rootScope.$broadcast 'companiesLoadedEvent', $rootScope.companies, $rootScope.selectedCompany
+      ).error((data, status, headers, config) ->
+        alert("Failed to load companies\n#{data}")
+        # TODO: add nicer error handling
+      )
+
+    $rootScope.findCompany = (name)->
+      for company in $rootScope.companies
+        return company if company.name == name
+      return null
+
+
+    # Initialization
+    $rootScope.loadCompanies()
 ])
